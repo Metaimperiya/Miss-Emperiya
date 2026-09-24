@@ -47,7 +47,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
-h1,h2,h3{font-family:'Space Grotesk','Inter',sans-serif;font-weight:600;letter-spacing:-.5px;line-height:1.1}
+h1,h2,h3,h4{font-family:'Space Grotesk','Inter',sans-serif;font-weight:600;letter-spacing:-.5px;line-height:1.1}
 .container{max-width:var(--max);margin:0 auto;padding:0 28px}
 section{padding:100px 0;position:relative}
 .btn{display:inline-flex;align-items:center;gap:10px;padding:15px 30px;border-radius:999px;font-size:14px;font-weight:500;letter-spacing:.3px;border:1px solid transparent;transition:.35s var(--ease)}
@@ -82,21 +82,33 @@ section{padding:100px 0;position:relative}
 .sec-head h2{font-size:clamp(32px,5vw,56px);margin-bottom:14px}
 .sec-head p{color:var(--muted);font-size:16px}
 
-/* ACCORDION */
-.acc{display:flex;flex-direction:column;gap:14px;max-width:900px;margin:0 auto}
-.acc-item{border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.02);overflow:hidden;transition:.3s}
-.acc-item:hover{border-color:rgba(79,209,255,.4)}
-.acc-head{width:100%;background:none;border:0;color:var(--text);text-align:left;padding:22px 26px;font-size:17px;font-family:'Space Grotesk',sans-serif;font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:16px}
-.acc-head .plus{width:24px;height:24px;position:relative;flex-shrink:0}
-.acc-head .plus::before,.acc-head .plus::after{content:'';position:absolute;top:50%;left:50%;background:var(--accent);transition:.3s}
-.acc-head .plus::before{width:14px;height:2px;transform:translate(-50%,-50%)}
-.acc-head .plus::after{width:2px;height:14px;transform:translate(-50%,-50%)}
-.acc-item.open .plus::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0}
-.acc-body{max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
-.acc-body-inner{padding:0 26px 26px;color:var(--muted);font-size:15px}
-.acc-body-inner ul{margin:12px 0 0 20px}
-.acc-body-inner li{margin-bottom:8px}
-.acc-body-inner strong{color:var(--text)}
+/* ============================================
+   ENCYCLOPEDIA — большие текстовые блоки
+   ============================================ */
+.encyclopedia{max-width:900px;margin:0 auto}
+.enc-block{margin-bottom:80px;padding-bottom:60px;border-bottom:1px solid var(--line)}
+.enc-block:last-child{border-bottom:none}
+.enc-block h3{font-size:clamp(24px,3vw,34px);margin-bottom:8px;color:var(--text)}
+.enc-block .enc-num{font-family:'Space Grotesk',sans-serif;font-size:13px;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
+.enc-block p{color:var(--muted);font-size:16px;line-height:1.9;margin-bottom:18px}
+.enc-block p strong{color:var(--text)}
+.enc-block ul,.enc-block ol{margin:18px 0 18px 24px;color:var(--muted);font-size:16px;line-height:1.9}
+.enc-block li{margin-bottom:10px}
+.enc-block li strong{color:var(--text)}
+.enc-block .highlight{background:rgba(79,209,255,.06);border-left:3px solid var(--accent);padding:20px 24px;border-radius:0 12px 12px 0;margin:24px 0;color:var(--text);font-size:15px;line-height:1.8}
+.enc-block .highlight strong{color:var(--accent)}
+.enc-block .analogy{background:rgba(123,140,255,.06);border:1px dashed rgba(123,140,255,.3);border-radius:14px;padding:22px 26px;margin:24px 0;font-size:15px;line-height:1.8;color:var(--muted)}
+.enc-block .analogy .analogy-label{display:block;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--accent-2);margin-bottom:8px}
+.enc-block .analogy strong{color:var(--text)}
+.enc-block .steps{counter-reset:step;list-style:none;margin-left:0}
+.enc-block .steps li{counter-increment:step;position:relative;padding-left:48px;margin-bottom:20px}
+.enc-block .steps li::before{content:counter(step);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#06121c;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+.enc-block .tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:24px 0}
+.enc-block .tech-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px 24px;transition:.35s var(--ease)}
+.enc-block .tech-card:hover{border-color:var(--accent);transform:translateY(-4px)}
+.enc-block .tech-card h4{font-size:17px;color:var(--accent);margin-bottom:10px}
+.enc-block .tech-card p{font-size:14px;color:var(--muted);line-height:1.7;margin:0}
+.enc-block .tech-card .price{display:inline-block;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--accent-2);border:1px solid rgba(123,140,255,.3);border-radius:999px;padding:4px 12px;margin-top:12px}
 
 /* PORTFOLIO */
 .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:var(--max);margin:0 auto}
@@ -167,7 +179,7 @@ footer{border-top:1px solid var(--line);padding:60px 0 40px;background:#04070c}
 <body>
 
 <!-- ============================================================
-     HERO — главная секция
+     HERO
      ============================================================ -->
 <section class="hero">
   <div class="container">
@@ -185,7 +197,7 @@ footer{border-top:1px solid var(--line);padding:60px 0 40px;background:#04070c}
 </section>
 
 <!-- ============================================================
-     ABOUT — о модели
+     ABOUT
      ============================================================ -->
 <section id="about" style="background:var(--bg-2)">
   <div class="container">
@@ -215,7 +227,7 @@ footer{border-top:1px solid var(--line);padding:60px 0 40px;background:#04070c}
 </section>
 
 <!-- ============================================================
-     PORTFOLIO — портфолио (4 фотографии)
+     PORTFOLIO
      ============================================================ -->
 <section id="portfolio">
   <div class="container">
@@ -258,7 +270,7 @@ footer{border-top:1px solid var(--line);padding:60px 0 40px;background:#04070c}
 </section>
 
 <!-- ============================================================
-     PROJECTS — проекты
+     PROJECTS
      ============================================================ -->
 <section id="projects" style="background:var(--bg-2)">
   <div class="container">
@@ -305,89 +317,358 @@ footer{border-top:1px solid var(--line);padding:60px 0 40px;background:#04070c}
 </section>
 
 <!-- ============================================================
-     HOW IT WORKS — как всё устроено
+     ENCYCLOPEDIA — ПОЛНОЕ ОБЪЯСНЕНИЕ
      ============================================================ -->
 <section id="how">
   <div class="container">
     <div class="sec-head reveal">
-      <span class="eyebrow">How it works</span>
+      <span class="eyebrow">Encyclopedia</span>
       <h2>Как это работает</h2>
-      <p>Простыми словами — без программирования</p>
-    </div>
-    <div class="acc reveal">
-
-      <div class="acc-item">
-        <button class="acc-head"><span>Что такое сайт и как он работает?</span><span class="plus"></span></button>
-        <div class="acc-body"><div class="acc-body-inner">
-          Сайт — это набор файлов (HTML, CSS, картинки), которые лежат на компьютере-сервере. Когда человек вводит адрес сайта в браузере, браузер запрашивает эти файлы и показывает их. <strong>Тебе не нужно программировать</strong> — сайт уже свёрстан. Ты просто загружаешь файлы на хостинг, и он работает.
-        </div></div>
-      </div>
-
-      <div class="acc-item">
-        <button class="acc-head"><span>Что такое домен и зачем он нужен?</span><span class="plus"></span></button>
-        <div class="acc-body"><div class="acc-body-inner">
-          Домен — это <strong>адрес сайта</strong>, как адрес дома. Например, <strong>metaimperiya.com</strong>. Домены бывают платные и бесплатные. Платные (например, <strong>.com</strong>) стоят около 10–15 долларов в год. <strong>.com</strong> — международный домен, он лучше подходит, если ты планируешь работать за границей (Америка, Европа). Российские домены (<strong>.ru</strong>) тоже есть, но для международной карьеры лучше <strong>.com</strong>.
-        </div></div>
-      </div>
-
-      <div class="acc-item">
-        <button class="acc-head"><span>Что такое хостинг?</span><span class="plus"></span></button>
-        <div class="acc-body"><div class="acc-body-inner">
-          Хостинг — это <strong>компьютер, на котором лежит сайт</strong>. Он работает 24/7, чтобы сайт был доступен в любое время. Хостинг тоже платный — примерно 5–20 долларов в месяц. Но есть и <strong>бесплатные варианты</strong>: GitHub Pages, Vercel, Netlify. Для старта этого достаточно.
-        </div></div>
-      </div>
-
-      <div class="acc-item">
-        <button class="acc-head"><span>Что такое GitHub и Vercel?</span><span class="plus"></span></button>
-        <div class="acc-body"><div class="acc-body-inner">
-          <strong>GitHub</strong> — это бесплатное хранилище для файлов сайта. Ты загружаешь туда HTML-код, и он там хранится. <strong>Vercel</strong> — сервис, который берёт файлы из GitHub и <strong>автоматически публикует их в интернете</strong>. Ты просто загружаешь код — и через минуту сайт уже работает. Бесплатно. Это самый простой способ запустить сайт без затрат.
-        </div></div>
-      </div>
-
-      <div class="acc-item">
-        <button class="acc-head"><span>Что такое Firebase?</span><span class="plus"></span></button>
-        <div class="acc-body"><div class="acc-body-inner">
-          <strong>Firebase</strong> — это бесплатный сервис от Google, который даёт <strong>базу данных, авторизацию и хранение</strong>. Например, если ты хочешь, чтобы на сайте была форма заявки или чтобы можно было добавлять новые фото без правки кода — Firebase это делает. Для старта он не обязателен, но если захочешь развивать сайт — пригодится.
-        </div></div>
-      </div>
-
-      <div class="acc-item">
-        <button class="acc-head"><span>Что такое Telegram-бот и зачем он нужен?</span><span class="plus"></span></button>
-        <div class="acc-body"><div class="acc-body-inner">
-          <strong>Telegram-бот</strong> — это программа внутри Telegram, которая общается с людьми автоматически. Он может показывать портфолио, отвечать на вопросы, принимать заявки. Бот работает 24/7 и не устаёт. Его можно <strong>связать с сайтом</strong>: человек заходит на сайт, нажимает кнопку — и попадает в бота. Создать бота можно через <strong>@BotFather</strong> в Telegram. Это бесплатно.
-        </div></div>
-      </div>
-
-      <div class="acc-item">
-        <button class="acc-head"><span>Что такое Render и зачем он нужен?</span><span class="plus"></span></button>
-        <div class="acc-body"><div class="acc-body-inner">
-          <strong>Render</strong> — это сервис, который <strong>запускает программы в интернете</strong>. Если твой Telegram-бот написан на Python, его нужно где-то запустить, чтобы он работал 24/7. Render это делает. Есть бесплатный тариф. Ты просто загружаешь код бота на Render — и он работает.
-        </div></div>
-      </div>
-
-      <div class="acc-item">
-        <button class="acc-head"><span>Почему мы делаем это именно так?</span><span class="plus"></span></button>
-        <div class="acc-body"><div class="acc-body-inner">
-          Мы собираем <strong>простую, но рабочую связку</strong>:
-          <ul>
-            <li><strong>Сайт</strong> — на GitHub + Vercel (бесплатно)</li>
-            <li><strong>Данные</strong> — на Firebase (бесплатно)</li>
-            <li><strong>Бот</strong> — на Python + Render (бесплатно)</li>
-            <li><strong>Домен</strong> — платный, около 10–15 долларов в год</li>
-          </ul>
-          Это <strong>минимальные затраты</strong>, чтобы ты увидела, как всё работает, и поняла, что тебе нужно. Когда захочешь больше — мы сделаем более профессиональную версию.
-        </div></div>
-      </div>
-
-      <div class="acc-item">
-        <button class="acc-head"><span>Что такое METAIMPERIYA?</span><span class="plus"></span></button>
-        <div class="acc-body"><div class="acc-body-inner">
-          <strong>METAIMPERIYA</strong> — это цифровая экосистема для бизнеса, проектов и онлайн-продвижения. Мы создаём сайты, настраиваем Telegram-ботов, помогаем с цифровыми решениями. Твой сайт — часть этой экосистемы. В подвале сайта есть ссылка на METAIMPERIYA.
-        </div></div>
-      </div>
-
+      <p>Полное руководство — простыми словами, для тех, кто никогда не сталкивался с интернетом и сайтами</p>
     </div>
 
+    <div class="encyclopedia">
+
+      <!-- 1. ЧТО ТАКОЕ САЙТ -->
+      <div class="enc-block reveal">
+        <div class="enc-num">Глава 01</div>
+        <h3>Что такое сайт и как он работает</h3>
+        <p>
+          Сайт — это <strong>набор файлов</strong>, которые лежат на специальном компьютере (сервере) и которые любой человек может открыть в браузере. Представь, что у тебя есть папка с фотографиями, текстами, кнопками и ссылками. Ты выкладываешь эту папку в интернет — и теперь любой человек в мире может её открыть. Это и есть сайт.
+        </p>
+        <div class="analogy">
+          <span class="analogy-label">Аналогия</span>
+          Сайт — это как <strong>книга</strong>, которая лежит в библиотеке. Библиотека работает круглосуточно. Любой человек может прийти, взять книгу и посмотреть. Только вместо книги — твои фотографии, тексты и кнопки.
+        </div>
+        <p>Сайт состоит из нескольких частей:</p>
+        <ul>
+          <li><strong>HTML</strong> — это структура. Что где стоит: заголовок, текст, кнопка, фотография.</li>
+          <li><strong>CSS</strong> — это внешний вид. Цвета, шрифты, размеры, отступы. Всё, что делает сайт красивым.</li>
+          <li><strong>JavaScript</strong> — это движение. Анимации, кнопки, формы, которые реагируют на нажатие.</li>
+          <li><strong>Изображения</strong> — фотографии, логотипы, иконки.</li>
+        </ul>
+        <p>
+          Тебе <strong>не нужно программировать</strong>. Сайт уже свёрстан. Ты просто загружаешь готовые файлы на хостинг — и он работает. Это как собрать мебель по инструкции: все детали уже готовы, нужно только соединить.
+        </p>
+      </div>
+
+      <!-- 2. ДОМЕН -->
+      <div class="enc-block reveal">
+        <div class="enc-num">Глава 02</div>
+        <h3>Что такое домен и зачем он нужен</h3>
+        <p>
+          Домен — это <strong>адрес сайта</strong>. Как адрес дома. Например, <strong>metaimperiya.com</strong>. Когда человек вводит этот адрес в браузере — он попадает на твой сайт.
+        </p>
+        <div class="analogy">
+          <span class="analogy-label">Аналогия</span>
+          Домен — это как <strong>адрес дома</strong>. Если у тебя нет адреса, никто не найдёт твой дом. Если у тебя нет домена, никто не найдёт твой сайт.
+        </div>
+        <p>Домены бывают разные:</p>
+        <ul>
+          <li><strong>.com</strong> — международный. Лучший вариант, если ты хочешь работать за границей (Америка, Европа). Стоит около 10–15 долларов в год.</li>
+          <li><strong>.ru</strong> — российский. Дешевле, но для международной карьеры хуже.</li>
+          <li><strong>.model</strong>, <strong>.fashion</strong> — специальные домены для моделей и fashion-индустрии.</li>
+          <li><strong>.nyc</strong>, <strong>.la</strong> — если ты работаешь в конкретном городе.</li>
+        </ul>
+        <div class="highlight">
+          <strong>Важно:</strong> для международной карьеры лучше выбирать <strong>.com</strong>. Он понятен всем, его легко запомнить, и он вызывает больше доверия у зарубежных клиентов.
+        </div>
+        <p>Домен нужно <strong>купить</strong>. Покупается на специальных площадках:</p>
+        <div class="tech-grid">
+          <div class="tech-card">
+            <h4>Namecheap</h4>
+            <p>Дешёвый, надёжный, популярный среди новичков.</p>
+            <span class="price">от $10/год</span>
+          </div>
+          <div class="tech-card">
+            <h4>GoDaddy</h4>
+            <p>Крупнейший регистратор доменов в мире.</p>
+            <span class="price">от $12/год</span>
+          </div>
+          <div class="tech-card">
+            <h4>Reg.ru</h4>
+            <p>Российский регистратор. Удобен для .ru доменов.</p>
+            <span class="price">от 200 ₽/год</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. ХОСТИНГ -->
+      <div class="enc-block reveal">
+        <div class="enc-num">Глава 03</div>
+        <h3>Что такое хостинг</h3>
+        <p>
+          Хостинг — это <strong>компьютер, на котором лежит твой сайт</strong>. Этот компьютер работает 24 часа в сутки, 7 дней в неделю, чтобы сайт был доступен в любое время.
+        </p>
+        <div class="analogy">
+          <span class="analogy-label">Аналогия</span>
+          Домен — это <strong>адрес</strong>. Хостинг — это <strong>дом</strong>, где ты живёшь. Без дома адрес бесполезен. Без хостинга домен ничего не значит.
+        </div>
+        <p>Хостинг тоже нужно <strong>оплачивать</strong>. Стоит примерно 5–20 долларов в месяц. Но есть и <strong>бесплатные варианты</strong>:</p>
+        <div class="tech-grid">
+          <div class="tech-card">
+            <h4>GitHub Pages</h4>
+            <p>Бесплатный хостинг от GitHub. Идеален для простых сайтов.</p>
+            <span class="price">Бесплатно</span>
+          </div>
+          <div class="tech-card">
+            <h4>Vercel</h4>
+            <p>Автоматически публикует сайт из GitHub. Очень быстрый.</p>
+            <span class="price">Бесплатно</span>
+          </div>
+          <div class="tech-card">
+            <h4>Netlify</h4>
+            <p>Похож на Vercel. Простой и удобный.</p>
+            <span class="price">Бесплатно</span>
+          </div>
+          <div class="tech-card">
+            <h4>Beget</h4>
+            <p>Российский хостинг. Дешёвый и надёжный.</p>
+            <span class="price">от 150 ₽/мес</span>
+          </div>
+        </div>
+        <div class="highlight">
+          <strong>Для старта</strong> тебе достаточно <strong>бесплатных</strong> вариантов — GitHub Pages или Vercel. Ты не тратишь ни копейки, пока не поймёшь, что тебе действительно нужно.
+        </div>
+      </div>
+
+      <!-- 4. GITHUB + VERCEL -->
+      <div class="enc-block reveal">
+        <div class="enc-num">Глава 04</div>
+        <h3>Что такое GitHub и Vercel</h3>
+        <p>
+          <strong>GitHub</strong> — это бесплатное хранилище для файлов сайта. Ты загружаешь туда HTML-код, фотографии, стили — и они там хранятся. GitHub работает как облачная папка, только для кода и сайтов.
+        </p>
+        <p>
+          <strong>Vercel</strong> — это сервис, который берёт файлы из GitHub и <strong>автоматически публикует их в интернете</strong>. Ты просто загружаешь код — и через минуту сайт уже работает. Бесплатно.
+        </p>
+        <div class="analogy">
+          <span class="analogy-label">Аналогия</span>
+          GitHub — это <strong>склад</strong>, где лежат твои файлы. Vercel — это <strong>магазин</strong>, который берёт товары со склада и выставляет их на витрину. Люди приходят в магазин и видят твой сайт.
+        </div>
+        <p>Как это работает по шагам:</p>
+        <ol class="steps">
+          <li>Ты создаёшь аккаунт на GitHub (бесплатно).</li>
+          <li>Загружаешь туда файлы сайта (index.html и фотографии).</li>
+          <li>Создаёшь аккаунт на Vercel (бесплатно).</li>
+          <li>Связываешь Vercel с GitHub.</li>
+          <li>Vercel автоматически публикует твой сайт.</li>
+          <li>Ты получаешь ссылку — и можешь её отправить кому угодно.</li>
+        </ol>
+        <div class="highlight">
+          <strong>Плюс:</strong> когда ты меняешь файлы на GitHub — Vercel <strong>автоматически обновляет</strong> сайт. Тебе не нужно ничего делать вручную.
+        </div>
+      </div>
+
+      <!-- 5. FIREBASE -->
+      <div class="enc-block reveal">
+        <div class="enc-num">Глава 05</div>
+        <h3>Что такое Firebase</h3>
+        <p>
+          <strong>Firebase</strong> — это бесплатный сервис от Google, который даёт <strong>базу данных, авторизацию и хранение файлов</strong>.
+        </p>
+        <p>Что это значит на практике:</p>
+        <ul>
+          <li><strong>База данных</strong> — если ты хочешь, чтобы на сайте была форма заявки, Firebase сохраняет эти заявки.</li>
+          <li><strong>Авторизация</strong> — если ты хочешь, чтобы у тебя был личный кабинет на сайте, Firebase это делает.</li>
+          <li><strong>Хранение</strong> — если ты хочешь добавлять новые фото без правки кода, Firebase их хранит.</li>
+        </ul>
+        <div class="analogy">
+          <span class="analogy-label">Аналогия</span>
+          Firebase — это <strong>мозг</strong> твоего сайта. Он запоминает, кто пришёл, что заказал, какие фото загрузил.
+        </div>
+        <p>
+          Для старта Firebase <strong>не обязателен</strong>. Но если захочешь развивать сайт — он пригодится. Например, чтобы клиенты могли оставлять заявки прямо на сайте.
+        </p>
+        <div class="tech-grid">
+          <div class="tech-card">
+            <h4>Realtime Database</h4>
+            <p>База данных, которая обновляется в реальном времени.</p>
+            <span class="price">Бесплатно</span>
+          </div>
+          <div class="tech-card">
+            <h4>Firestore</h4>
+            <p>Более мощная база данных для сложных проектов.</p>
+            <span class="price">Бесплатно</span>
+          </div>
+          <div class="tech-card">
+            <h4>Authentication</h4>
+            <p>Вход через Google, email, телефон.</p>
+            <span class="price">Бесплатно</span>
+          </div>
+          <div class="tech-card">
+            <h4>Storage</h4>
+            <p>Хранение фотографий и файлов.</p>
+            <span class="price">Бесплатно</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. TELEGRAM-БОТ -->
+      <div class="enc-block reveal">
+        <div class="enc-num">Глава 06</div>
+        <h3>Что такое Telegram-бот и зачем он нужен</h3>
+        <p>
+          <strong>Telegram-бот</strong> — это программа внутри Telegram, которая общается с людьми автоматически. Он не спит, не устаёт и работает 24/7.
+        </p>
+        <p>Что бот может делать для модели:</p>
+        <ul>
+          <li>Показывать портфолио — человек нажимает кнопку и видит твои работы.</li>
+          <li>Отвечать на частые вопросы — «Сколько стоит съёмка?», «Как с тобой связаться?».</li>
+          <li>Принимать заявки — человек оставляет имя и телефон, бот сохраняет.</li>
+          <li>Переводить на разные языки — если к тебе обращаются иностранцы.</li>
+          <li>Отправлять информацию тебе в личку — ты сразу видишь новые заявки.</li>
+        </ul>
+        <div class="analogy">
+          <span class="analogy-label">Аналогия</span>
+          Telegram-бот — это <strong>личный секретарь</strong>, который работает круглосуточно. Он встречает гостей, отвечает на вопросы и передаёт тебе важную информацию.
+        </div>
+        <p>Как создать бота:</p>
+        <ol class="steps">
+          <li>Открой Telegram.</li>
+          <li>Найди <strong>@BotFather</strong> — это официальный бот для создания ботов.</li>
+          <li>Напиши ему <strong>/newbot</strong>.</li>
+          <li>Придумай имя и username для бота.</li>
+          <li>Получи <strong>токен</strong> — это ключ к боту. Никому его не показывай.</li>
+          <li>Через конструкторы (Manybot, Puzzlebot) настрой, что бот будет делать.</li>
+        </ol>
+        <div class="highlight">
+          <strong>Связка с сайтом:</strong> человек заходит на твой сайт, нажимает кнопку «Открыть Telegram-бота» — и попадает в бота. Так сайт и Telegram работают вместе.
+        </div>
+      </div>
+
+      <!-- 7. RENDER -->
+      <div class="enc-block reveal">
+        <div class="enc-num">Глава 07</div>
+        <h3>Что такое Render и зачем он нужен</h3>
+        <p>
+          <strong>Render</strong> — это сервис, который <strong>запускает программы в интернете</strong>. Если твой Telegram-бот написан на Python, его нужно где-то запустить, чтобы он работал 24/7. Render это делает.
+        </p>
+        <div class="analogy">
+          <span class="analogy-label">Аналогия</span>
+          Если бот — это <strong>робот</strong>, то Render — это <strong>розетка</strong>, в которую он включён. Без розетки робот не работает.
+        </div>
+        <p>Почему Render:</p>
+        <ul>
+          <li><strong>Бесплатный тариф</strong> — для старта хватает.</li>
+          <li><strong>Простой</strong> — не нужно быть программистом.</li>
+          <li><strong>Автоматический</strong> — загружаешь код, Render сам запускает.</li>
+          <li><strong>Надёжный</strong> — бот работает 24/7.</li>
+        </ul>
+        <div class="highlight">
+          <strong>Связка:</strong> GitHub (код бота) → Render (запуск бота) → Telegram (бот работает). Ты не программируешь — ты просто загружаешь готовый код.
+        </div>
+      </div>
+
+      <!-- 8. ПОЧЕМУ ИМЕННО ТАК -->
+      <div class="enc-block reveal">
+        <div class="enc-num">Глава 08</div>
+        <h3>Почему мы делаем это именно так</h3>
+        <p>
+          Мы собираем <strong>простую, но рабочую связку</strong>, чтобы ты:
+        </p>
+        <ul>
+          <li>Увидела, как всё работает.</li>
+          <li>Поняла, что тебе действительно нужно.</li>
+          <li>Не тратила большие деньги на старте.</li>
+          <li>Могла развивать сайт постепенно.</li>
+        </ul>
+        <p>Вот наша связка:</p>
+        <div class="tech-grid">
+          <div class="tech-card">
+            <h4>Сайт</h4>
+            <p>GitHub + Vercel</p>
+            <span class="price">Бесплатно</span>
+          </div>
+          <div class="tech-card">
+            <h4>Данные</h4>
+            <p>Firebase</p>
+            <span class="price">Бесплатно</span>
+          </div>
+          <div class="tech-card">
+            <h4>Бот</h4>
+            <p>Python + Render</p>
+            <span class="price">Бесплатно</span>
+          </div>
+          <div class="tech-card">
+            <h4>Домен</h4>
+            <p>.com — международный</p>
+            <span class="price">$10–15/год</span>
+          </div>
+        </div>
+        <div class="highlight">
+          <strong>Итого:</strong> ты тратишь <strong>только на домен</strong> — около 10–15 долларов в год. Всё остальное — бесплатно. Когда захочешь больше — мы сделаем более профессиональную версию в <strong>METAIMPERIYA</strong>.
+        </div>
+      </div>
+
+      <!-- 9. METAIMPERIYA -->
+      <div class="enc-block reveal">
+        <div class="enc-num">Глава 09</div>
+        <h3>Что такое METAIMPERIYA</h3>
+        <p>
+          <strong>METAIMPERIYA</strong> — это цифровая экосистема для бизнеса, проектов, контента и онлайн-продвижения. Мы создаём сайты, настраиваем Telegram-ботов, помогаем с цифровыми решениями.
+        </p>
+        <p>Что мы делаем:</p>
+        <ul>
+          <li><strong>Создание сайтов</strong> — от простых лендингов до сложных платформ.</li>
+          <li><strong>Telegram-боты</strong> — для бизнеса, моделей, проектов.</li>
+          <li><strong>Цифровые решения</strong> — автоматизация, интеграции, аналитика.</li>
+          <li><strong>Онлайн-продвижение</strong> — SEO, контент, соцсети.</li>
+        </ul>
+        <div class="analogy">
+          <span class="analogy-label">Аналогия</span>
+          METAIMPERIYA — это <strong>мастерская</strong>, где делают цифровые инструменты для бизнеса. Твой сайт — один из этих инструментов.
+        </div>
+        <p>
+          В подвале сайта есть ссылка на <strong>metaimperiya.com</strong>. Там ты можешь узнать больше о наших услугах и связаться с нами.
+        </p>
+      </div>
+
+      <!-- 10. С ЧЕГО НАЧАТЬ -->
+      <div class="enc-block reveal">
+        <div class="enc-num">Глава 10</div>
+        <h3>С чего начать прямо сейчас</h3>
+        <p>
+          Если ты начинающая модель, тебе не нужно пытаться сделать всё за один день. Начни с десяти шагов:
+        </p>
+        <ol class="steps">
+          <li>Придумай профессиональное имя или псевдоним.</li>
+          <li>Выбери 2–3 направления моделинга.</li>
+          <li>Определи визуальный стиль.</li>
+          <li>Создай профессиональное портфолио.</li>
+          <li>Зарегистрируй основные социальные сети.</li>
+          <li>Создай собственный домен.</li>
+          <li>Сделай официальный сайт.</li>
+          <li>Начни собирать реальные публикации, интервью и профессиональные упоминания.</li>
+          <li>Создай Telegram-бота.</li>
+          <li>Свяжи все площадки между собой.</li>
+        </ol>
+        <div class="highlight">
+          <strong>План на 30 дней:</strong> каждый день — один маленький шаг. Через месяц у тебя будет полноценная цифровая экосистема. Не перепрыгивай. Строй последовательно.
+        </div>
+      </div>
+
+      <!-- 11. ГЛАВНАЯ ИДЕЯ -->
+      <div class="enc-block reveal">
+        <div class="enc-num">Глава 11</div>
+        <h3>Главная идея</h3>
+        <p>
+          Известность не начинается с известности. Она начинается с правильно созданной истории.
+        </p>
+        <p>
+          Сегодня у тебя может быть только одна фотография. Через год — портфолио. Через два года — проекты, интервью и публикации. Через несколько лет человек может ввести твоё имя в поисковике и увидеть целую историю твоей профессиональной деятельности.
+        </p>
+        <div class="highlight">
+          <strong>Ты не просто создаёшь аккаунт модели.</strong> Ты создаёшь своё имя, свой образ, своё портфолио и собственное цифровое пространство.
+        </div>
+        <p>
+          Начинай создавать эту историю уже сейчас.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Интерактивная зона -->
     <div class="anim-slot reveal">
       <div class="pulse"></div>
       <div class="lbl">Interactive Zone</div>
@@ -397,7 +678,7 @@ footer{border-top:1px solid var(--line);padding:60px 0 40px;background:#04070c}
 </section>
 
 <!-- ============================================================
-     CONTACT — контакты
+     CONTACT
      ============================================================ -->
 <section id="contact" style="background:var(--bg-2)">
   <div class="container">
@@ -436,7 +717,7 @@ footer{border-top:1px solid var(--line);padding:60px 0 40px;background:#04070c}
 </section>
 
 <!-- ============================================================
-     FOOTER — подвал с METAIMPERIYA
+     FOOTER
      ============================================================ -->
 <footer>
   <div class="container">
@@ -451,7 +732,7 @@ footer{border-top:1px solid var(--line);padding:60px 0 40px;background:#04070c}
         <a href="#about">О модели</a>
         <a href="#portfolio">Портфолио</a>
         <a href="#projects">Проекты</a>
-        <a href="#how">Как это работает</a>
+        <a href="#how">Энциклопедия</a>
       </div>
       <div class="footer-col">
         <h4>Связь</h4>
@@ -467,25 +748,13 @@ footer{border-top:1px solid var(--line);padding:60px 0 40px;background:#04070c}
 </footer>
 
 <!-- ============================================================
-     JAVASCRIPT — оживляем сайт
+     JAVASCRIPT
      ============================================================ -->
 <script>
-// --- REVEAL при прокрутке ---
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
 }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-// --- АККОРДЕОН ---
-document.querySelectorAll('.acc-head').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const item = btn.parentElement;
-    const body = item.querySelector('.acc-body');
-    const open = item.classList.contains('open');
-    document.querySelectorAll('.acc-item').forEach(i => { i.classList.remove('open'); i.querySelector('.acc-body').style.maxHeight = null; });
-    if (!open) { item.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; }
-  });
-});
 </script>
 </body>
 </html>
